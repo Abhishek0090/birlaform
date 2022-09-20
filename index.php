@@ -218,8 +218,8 @@
                     <span class="alphabet">h.</span>
                     
                     <label for="" style="margin-right:12px";>Proposed line of treatment :</label>
-                    <label for="" style="margin:auto ; margin-right:10px";>Medical Management Surgical Management Intensive care Investigation Non allopathic treatment.</label>
-                    <input type="text" class="form-control class" style="padding-right:15rem;" name="line_treatment">
+                    <label for="" style="margin:auto ; margin-right:10px;">Medical Management Surgical Management Intensive care Investigation Non allopathic treatment.</label>
+                    <input type="text" class="form-control class"  name="line_treatment">
                 </div>
                 <div class="col-md-6 aligninput" >
                     <span class="alphabet">I.</span>
