@@ -3,12 +3,22 @@
 }
 
 label{
+    min-width: fit-content;
     margin-right: 120px;
 }
+
 
 .aligninput{
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: start;
+    margin: 6px;
+    min-width: fit-content;
+}
+.checkwidth{
+    margin-right: -7rem;
+} 
+.class{
+    
 }
