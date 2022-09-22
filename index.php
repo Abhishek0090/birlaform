@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -11,7 +12,13 @@
 </head>
 <body>
         <div class="container  mt-5">
-            <div class="row d-flex flex-column col">
+            <div class="row d-flex flex-column col"> 
+                <div class="d-flex flex-end" style="border:none;">
+
+                    <button class = "btn "><a href="home.php" target="_blank">Download admin pdf</a></button>
+                    <button class = "btn "><a href="patientpdf.php" target="_blank"  >Download patient pdf</a></button>
+                    <button class = "btn  " ><a href="doctorpdf.php" target="_blank"  >Download doctor pdf</a></button>
+                </div>
                 <form action="insert.php" method="post">
 
                     <div class="form-group">
@@ -30,13 +37,12 @@
 
                     <label for="">Toll free Fax</label>
                     <input type="text" class="form-control class autosave"   name="toll_fax" id="toll_fax" >
-                    
-                    <div class="col-md-6 aligninput">
-                        <!-- <button type="button" name="publish" class="btn btn-info">Publish</button> -->
+                    </div>
+                    <!-- <div class="col-md-6 aligninput">
                     </div>
                     <div class="form-group">  
                         <input type="hidden" name="post_id" id="post_id">
-                    </div> 
+                    </div>  -->
                 </div>
 
                     
@@ -106,7 +112,7 @@
                 <span class="alphabet">h.</span>
 
                     <label for="">Policy number / Name of corporate</label>
-                    <input type="text" class="form-control class" id="policy_number" name="policy_number" onChange="insert_patient()">
+                    <input type="text" class="form-control class" id="policy_number" name="policy_number" ">
                 </div>
 
                 <div class="col-md-6 aligninput">
@@ -128,7 +134,7 @@
             <input type="radio" class="form-check-input" id="radio2" name="mediclaim" value="No" >No
             <label class="form-check-label" for="radio2" ></label>
             </div>
-</div>
+
 </div>
             <div class="col-md-6 aligninput">
                 <span class="alphabet">k.</span>
@@ -162,50 +168,45 @@
 
                     <label for="">Contact number if any :</label>
                     <input type="text" class="form-control class" id="contact_physician" name="contact_physician" >
-                    
-                    <div class="col-md-6 aligninput">
-                        <!-- <button type="button" name="publish" class="btn btn-info">Publish</button> -->
                     </div>
-                    <div class="form-group">  
-                        <input type="hidden" name="patientid" id="patientid" />  
-                        <div id="autoSave"></div>  
-                    </div> 
-                </div>
+                    
+                
                 <p>PLEASE COMPLETE DECLARATION ON THE REVERSE SIDE OF THIS FORM</p>
                 
 
-                    <!-- <h2>TO BE FILLED BY THE TREATING DOCTOR/HOSPITAL</h2>
+                    <h2>TO BE FILLED BY THE TREATING DOCTOR/HOSPITAL</h2>
                     
                     <div class="col-md-6 aligninput">
                         <span class="alphabet">a.</span>
                         
                         <label for="">Name of the treating doctor :</label>
-                        
-                        <input type="text" class="form-control class" id="name_doctor" name="name_doctor" onChange="insert_patient()">
+                
+                        <input type="text" class="form-control class" id="name_doctor" name="name_doctor">
                     </div> 
                     <div class="col-md-6 aligninput">
                         <span class="alphabet">b.</span>
                         
                         <label for="">Contact number:</label>
-                        <input type="text" class="form-control class" id="contact_doctor" name="contact_doctor" onChange="insert_patient()">
-                </div> <div class="col-md-6 aligninput">
+                        <input type="text" class="form-control class" id="contact_doctor" name="contact_doctor">
+                </div> 
+                <div class="col-md-6 aligninput">
                     <span class="alphabet">c.</span>
                     
                     <label for="">Name of ILLNESS / Disease with presenting Complaints :</label>
-                    <input type="text" class="form-control class" id="nature_illness" name="nature_illness" onChange="insert_patient()">
+                    <input type="text" class="form-control class" id="nature_illness" name="nature_illness" >
                 </div> 
                 <div class="col-md-6 aligninput">
                     <span class="alphabet">d.</span>
                     
                     <label for="">Relevant clinical findings :</label>
-                    <input type="text" class="form-control class" id="relevant" name="relevant" onChange="insert_patient()">
+                    <input type="text" class="form-control class" id="relevant" name="relevant" >
                 </div>
                
                 <div class="col-md-6 aligninput">
                     <span class="alphabet">e.</span>
                     
                     <label for="">Duration of the present ailment :</label> 
-                    <input type="text" class="form-control class d-flex flex-row-reverse" id="duration"  name="duration" onChange="insert_patient()" >
+                    <input type="text" class="form-control class d-flex flex-row-reverse" id="duration"  name="duration"  >
                     <span>Days</span>
 </div>
 <div class="col-md-6 alighinput d-flex">
@@ -220,7 +221,7 @@
                     <span class="alphabet">f.</span>
                     
                     <label for="">Provisional diagnosis :</label>
-                    <input type="text" class="form-control class" id="diagnosis" name="diagnosis " >
+                    <input type="text" class="form-control class" id="diagnosis" name="diagnosis">
                 </div>
                 <div class="col-md-6 aligninput">
                     <span class="alphabet">g.</span>
@@ -270,9 +271,11 @@
                     
                     <label for="">How did injury occur :</label>
                     <input type="text" class="form-control class" id="injury_occur" name="injury_occur" >
-                </div> -->
+                </div>
               
-</div>
+                <input type="submit" name="submit" class="btn submitbtn btn-success">
+
+            </div>
 
         </form>
     </div>
@@ -284,38 +287,46 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.min.js" integrity="sha384-7VPbUDkoPSGFnVtYi0QogXtr74QeVeeIs99Qfg5YCF+TidwNdjvaKZX19NZ/e6oz" crossorigin="anonymous"></script>
 <script>
 $(document).ready(function () {
-    $('.autosave').on('change',function(){
-        var field_id = $(this).attr('id');
-        var field_val = $('#'+field_id).val();
-        var field_name = $('#'+field_id).attr('name');
-        var post_id = $('#post_id').val();
-        //alert(field_val); return false;
-        if(field_val != ''){
-            $.ajax({
-                url: "admins.php",
-                method: "POST",
-                //dataType : 'text',
-                data:{
-                    post_id : post_id,
-                    field_val:field_val,
-                    field_name:field_name,
-                },
-                success: function(data){
-                    {
-                        if(data !=''){
-                            console.log(data);
-                            $("#post_id").val(data);
-                        }
-                        
-                    }
-                }
-            });
-        }
+    
+    $('#submitbtn').click(function (e) { 
+        e.preventDefault();
+        window.location.replace('index.php');
+        
     });
+});
+// $(document).ready(function () {
+//     $('.autosave').on('change',function(){
+//         var field_id = $(this).attr('id');
+//         var field_val = $('#'+field_id).val();
+//         var field_name = $('#'+field_id).attr('name');
+//         var post_id = $('#post_id').val();
+//         //alert(field_val); return false;
+//         if(field_val != ''){
+//             $.ajax({
+//                 url: "admins.php",
+//                 method: "POST",
+//                 //dataType : 'text',
+//                 data:{
+//                     post_id : post_id,
+//                     field_val:field_val,
+//                     field_name:field_name,
+//                 },
+//                 success: function(data){
+//                     {
+//                         if(data !=''){
+//                             console.log(data);
+//                             $("#post_id").val(data);
+//                         }
+                        
+//                     }
+//                 }
+//             });
+//         }
+//     });
 
 
           
-});
+// });
 </script>
 
 </body>
