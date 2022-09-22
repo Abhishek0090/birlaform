@@ -36,7 +36,11 @@ $html = '<table border="1" cellspacing="0" cellspadding="0" width="100%">
 	$mpdf->SetDisplayMode('fullpage');
 	$mpdf->WriteHTML( $html);
 	/* $mpdf->Output( 'devnote.pdf', 'F' ); */
+
 	$mpdf->Output();
+
+	
 	exit;
+
 
     ?>

@@ -19,7 +19,7 @@
                     <button class = "btn "><a href="patientpdf.php" target="_blank"  >Download patient pdf</a></button>
                     <button class = "btn  " ><a href="doctorpdf.php" target="_blank"  >Download doctor pdf</a></button>
                 </div>
-                <form action="insert.php" method="post">
+                <form  action="pdf.php" method="post">
 
                     <div class="form-group">
                         <h3>DETAILS OF THE THIRD PARTY ADMINISTRATOR</h3><P>(To be filled in block letters)</P>
@@ -35,6 +35,7 @@
                         <div class="col-md-6 aligninput form-group">
                         <span class="alphabet">c.</span>
 
+                        <!--  -->
                     <label for="">Toll free Fax</label>
                     <input type="text" class="form-control class autosave"   name="toll_fax" id="toll_fax" >
                     </div>
@@ -273,7 +274,10 @@
                     <input type="text" class="form-control class" id="injury_occur" name="injury_occur" >
                 </div>
               
-                <input type="submit" name="submit" class="btn submitbtn btn-success">
+            
+
+                    <input type="submit" name="submit" class="btn submitbtn btn-success">
+           
 
             </div>
 
@@ -290,7 +294,7 @@ $(document).ready(function () {
     
     $('#submitbtn').click(function (e) { 
         e.preventDefault();
-        window.location.replace('index.php');
+        alert("data saved Successfully");
         
     });
 });
