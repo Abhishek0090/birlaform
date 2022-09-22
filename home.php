@@ -1,6 +1,6 @@
 <?php
 
-
+$html = '';
 $html = '<table border="1" cellspacing="0" cellspadding="0" width="100%">
 	<thead>
 	    <tr>
@@ -14,8 +14,6 @@ $html = '<table border="1" cellspacing="0" cellspadding="0" width="100%">
    	$link = mysqli_connect("localhost","root","","birlaform");
 	$no = 1;
 	$q = "SELECT * FROM `admin` ORDER BY id DESC";
-	$d = "SELECT * FROM `doctor` ORDER BY id DESC";
-	$p = "SELECT * FROM `patient` ORDER BY id DESC";
 	$res = mysqli_query($link,$q);
 	$row = mysqli_num_rows($res);
 	if($row > 0) { 
@@ -27,7 +25,7 @@ $html = '<table border="1" cellspacing="0" cellspadding="0" width="100%">
 	    $no++;
 	}
 	} else {
-		$html .= '<tr align="center"><td colspan="8">No Event</td></tr>';
+		$html .= '<tr aling="center"><td colspan="8">No Event</td></tr>';
 	}
 
    	$html .= '</tbody></table>';
@@ -38,8 +36,6 @@ $html = '<table border="1" cellspacing="0" cellspadding="0" width="100%">
 	$mpdf->SetDisplayMode('fullpage');
 	$mpdf->WriteHTML( $html);
 	/* $mpdf->Output( 'devnote.pdf', 'F' ); */
-	$file = time().'.pdf';
-	// $mpdf->Output($file,'D');
 	$mpdf->Output();
 	exit;
 

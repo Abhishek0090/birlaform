@@ -69,7 +69,7 @@
                         </div>
             </div>
 
-            <div class="col-md-6 aligninput ">
+            
                 <div class="col-md-6 aligninput">
                      <span class="alphabet">c.</span>
                     <div class="age aligninput">
@@ -79,7 +79,7 @@
                         
                     </div>
                 </div>
-</div>
+            
             <div class="col-md-6 aligninput">
                 <span class="alphabet">d.</span>
 
