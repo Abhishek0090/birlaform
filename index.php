@@ -15,11 +15,11 @@
             <div class="row d-flex flex-column col"> 
                 <div class="d-flex flex-end" style="border:none;">
 
-                    <button class = "btn "><a href="home.php" target="_blank">Download admin pdf</a></button>
-                    <button class = "btn "><a href="patientpdf.php" target="_blank"  >Download patient pdf</a></button>
-                    <button class = "btn  " ><a href="doctorpdf.php" target="_blank"  >Download doctor pdf</a></button>
+                    <button class = "btn "><a href="home.php" target="_blank">Download pdf</a></button>
+                    <!-- <button class = "btn "><a href="patientpdf.php" target="_blank"  >Download patient pdf</a></button>
+                    <button class = "btn  " ><a href="doctorpdf.php" target="_blank"  >Download doctor pdf</a></button> -->
                 </div>
-                <form  action="pdf.php" method="post">
+                <form  action="insert.php" method="post">
 
                     <div class="form-group">
                         <h3>DETAILS OF THE THIRD PARTY ADMINISTRATOR</h3><P>(To be filled in block letters)</P>

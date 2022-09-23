@@ -22,3 +22,10 @@ label{
 .class{
     
 }
+
+body{
+    background-image: url('bg.jpg');
+    background-repeat: no-repeat;
+    background-size: 84rem 100%;
+    margin-top: 10rem;
+}
