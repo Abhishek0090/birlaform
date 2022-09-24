@@ -49,10 +49,20 @@ input{
 }
 .blockwise{
 	width : 12px;
-
+	
 	border : none;
 	
 }
+.radiobtn{
+	accent-color: red;
+}
+input[type=checkbox]{
+	accent-color: red;
+}
+input:checked {
+	height: 50px;
+	width: 50px;
+  }
 </style>';
 
 
@@ -72,9 +82,9 @@ input{
 	
 	$link = mysqli_connect("localhost","root","","birlaform");
 	$no = 0;
-	$q = "SELECT * FROM `admin` ORDER BY id ASC";
-	$p = "SELECT * FROM `patient` ORDER BY employeeid ASC";
-	$d = "SELECT * FROM `doctor` ORDER BY doctorid ASC";
+	$q = "SELECT * FROM `admin` ORDER BY id DESC";
+	$p = "SELECT * FROM `patient` ORDER BY employeeid DESC";
+	$d = "SELECT * FROM `doctor` ORDER BY doctorid DESC";
 	$res = mysqli_query($link,$q);
 	$res1 = mysqli_query($link,$p);
 	$res2 = mysqli_query($link,$d);
@@ -144,31 +154,39 @@ input{
 	if($row2 = mysqli_fetch_assoc($res2) ) {
 
         $name_doctor = $row2['name_doctor'];
-        $toll_fax = $row2['toll_fax'];
-		// <td>'.$row['name_doctor'].'</td>
-	    // <td>'.$row['contact_doctor'].'</td>
-	    // <td>'.$row['nature_illness'].'</td>
-	    // <td>'.$row['relevant'].'</td>
-	    // <td>'.$row['duration'].'</td>
-	    // <td>'.$row['date_consultation'].'</td>
-	    // <td>'.$row['past_history'].'</td>
-	    // <td>'.$row['diagnosis'].'</td>
-	    // <td>'.$row['icd_code'].'</td>
-	    // <td>'.$row['line_treatment'].'</td>
-	    // <td>'.$row['invest_medical'].'</td>
-	    // <td>'.$row['route_drug'].'</td>
-	    // <td>'.$row['name_surgery'].'</td>
-	    // <td>'.$row['icd_pcs'].'</td>
-	    // <td>'.$row['other_treatment'].'</td>
-	    // <td>'.$row['injury_occur'].'</td>';
-	   
-
-
-
-
+        $contact_doctor = $row2['contact_doctor'];
+        $nature_illness = $row2['nature_illness'];
+        $relevant = $row2['relevant'];
+        $duration = $row2['duration'];
+        $date_consultation = $row2['date_consultation'];
+        $past_history = $row2['past_history'];
+        $diagnosis = $row2['diagnosis'];
+        $icd_code = $row2['icd_code'];
+        $line_treatment = $row2['line_treatment'];
+        $invest_medical = $row2['invest_medical'];
+        $route_drug = $row2['route_drug'];
+        $name_surgery = $row2['name_surgery'];
+        $icd_pcs = $row2['icd_pcs'];
+        $other_treatment = $row2['other_treatment'];
+        $injury_occur = $row2['injury_occur'];
+       
 		//split into string char
         $name_doctor_exp = str_split($name_doctor);
-		$toll_fax_exp = str_split($toll_fax);
+		$contact_doctor_exp = str_split($contact_doctor);
+		$nature_illness_exp = str_split($nature_illness);
+		$relevant_exp = str_split($relevant);
+		$duration_exp = str_split($duration);
+		$date_consultation_exp = str_split($date_consultation);
+		$past_history_exp = str_split($past_history);
+		$diagnosis_exp = str_split($diagnosis);
+		$icd_code_exp = str_split($icd_code);
+		$line_treatment_exp = str_split($line_treatment);
+		$invest_medical_exp = str_split($invest_medical);
+		$route_drug_exp = str_split($route_drug);
+		$name_surgery_exp = str_split($name_surgery);
+		$icd_pcs_exp = str_split($icd_pcs);
+		$other_treatment_exp = str_split($other_treatment);
+		$injury_occur_exp = str_split($injury_occur);
     
 	}
 	} else {
@@ -198,18 +216,7 @@ for ($i=0; $i < 13; $i++) {
 	
 }
 $html .="
-	<input class=blockwise>
-	<input  class=blockwise>
-	<input  class=blockwise>
-	<input  class=blockwise>
-	<input  class=blockwise>
-	<input  class=blockwise>
-	<input  class=blockwise>
-	<input  class=blockwise>
-	<input  class=blockwise>
-	<input  class=blockwise>
-	<input  class=blockwise>
-<input  class=blockwise>
+	
  </div>
 	<div>
 	<span>c.</span>
@@ -251,12 +258,27 @@ $html .="
 	</div>
 <div>
 <span>b.</span>
-	<label>Gender</label>
+	<label>Gender</label>";
 	
-<input type=checkbox checked >Male
+		if($gender == "Male"){
+
+			$html .="<input type=checkbox checked=checked> Male";
+			$html .= "
+			<input type=checkbox>Female";
+		}
+		if($gender == "Female"){
+			$html .="<input type=checkbox> Male";
+			$html .= "
+			<input type=checkbox checked=checked>Female";
+		}
+	
+	$html .= "
+	
+	
 <label></label>
 
-<input type=checkbox>Female
+
+
 <label></label>
 
 </div>
@@ -399,17 +421,22 @@ $html .="
 <div>
 <span>j.</span>
 
-	<label>Currently do you have any other Mediclaim/Health insurance</label>
-	
-<input type=checkbox  checked >
-<label>
-Yes
+	<label>Currently do you have any other Mediclaim/Health insurance</label>";
+	if($mediclaim == "Yes"){
 
-</label>
+		$html .="<input type=checkbox checked=checked> Yes";
+		$html .= "
+		<input type=checkbox>No";
+	}
+	if($mediclaim == "No"){
+		$html .="<input type=checkbox> Yes";
+		$html .= "
+		<input type=checkbox checked=checked>No";
+	}
+
+$html .= "
 
 
-<input type=checkbox>
-<label>No</label>
 </div>
 
 </div>
@@ -436,13 +463,21 @@ Yes
 <div>
 <span>l.</span>
 
-	<label>Do you have any family  physician</label>
-	
-<input type=checkbox checked >
-<label>Yes</label>
+	<label>Do you have any family  physician</label>";
+	if($physician == "Yes"){
 
-<input type=checkbox>No
-<label></label>
+		$html .="<input type=checkbox checked=checked> Yes";
+		$html .= "
+		<input type=checkbox>No";
+	}
+	if($physician == "No"){
+		$html .="<input type=checkbox> Yes";
+		$html .= "
+		<input type=checkbox checked=checked>No";
+	}
+
+$html .= "
+
 </div>
 </div>
 
@@ -510,371 +545,258 @@ Yes
 	<div>
 		<span>b.</span>
 		
-		<label>Contact number:</label>
-		<input class=blockwise>
-	<input class=blockwise>
-	<input class=blockwise>
-	<input class=blockwise>
-	<input class=blockwise>
-	<input class=blockwise>
-	<input class=blockwise>
-	<input class=blockwise>
-	<input class=blockwise>
-	<input class=blockwise>
-	<input class=blockwise>
+		<label>Contact number:</label>";
+		for ($i=0; $i < 10; $i++) { 
+			# code...
+			if($i<count($contact_doctor_exp)){
+	
+				$html .="<input class=blockwise value=\"".$contact_doctor_exp	[$i]."\">";
+			}
+			else{
+				$html .= "
+				<input  class=blockwise>";
+			}
+		}
+		$html .= "
 	
 </div> 
 <div>
 	<span>c.</span>
 	
-	<label>Name of ILLNESS / Disease with presenting Complaints :</label>
-	<input class=blockwise>
-	<input class=blockwise>
-	<input class=blockwise>
-	<input class=blockwise>
-	<input class=blockwise>
-	<input class=blockwise>
-	<input class=blockwise>
-	<input class=blockwise>
-	<input class=blockwise>
-	<input class=blockwise>
-	<input class=blockwise>
-	<input class=blockwise>
-	<input class=blockwise>
-	<input class=blockwise>
-	<input class=blockwise>
-	<input class=blockwise>
-	<input class=blockwise>
-	<input class=blockwise>
-	<input class=blockwise>
-	<input class=blockwise>
-	<input class=blockwise>
-	<input class=blockwise>
-	<input class=blockwise>
-	<input class=blockwise>
-	
+	<label>Name of ILLNESS / Disease with presenting Complaints :</label>";
+	for ($i=0; $i < 24; $i++) { 
+		# code...
+		if($i<count($nature_illness_exp)){
+
+			$html .="<input class=blockwise value=\"".$nature_illness_exp	[$i]."\">";
+		}
+		else{
+			$html .= "
+			<input  class=blockwise>";
+		}
+	}
+	$html .= "
+
 	
 </div> 
 <div>
 	<span>d.</span>
 	
-	<label>Relevant clinical findings :</label>
-	<input class=blockwise>
-	<input class=blockwise>
-	<input class=blockwise>
-	<input class=blockwise>
-	<input class=blockwise>
-	<input class=blockwise>
-	<input class=blockwise>
-	<input class=blockwise>
-	<input class=blockwise>
-	<input class=blockwise>
-	<input class=blockwise>
-	<input class=blockwise>
-	<input class=blockwise>
-	<input class=blockwise>
-	<input class=blockwise>
-	<input class=blockwise>
-	<input class=blockwise>
-	<input class=blockwise>
-	<input class=blockwise>
-	<input class=blockwise>
-	<input class=blockwise>
-	<input class=blockwise>
-	<input class=blockwise>
-	<input class=blockwise>
-	<input class=blockwise>
-	<input class=blockwise>
-	<input class=blockwise>
-	<input class=blockwise>
-	<input class=blockwise>
-	
+	<label>Relevant clinical findings :</label>";
+	for ($i=0; $i < 24; $i++) { 
+		# code...
+		if($i<count($relevant_exp)){
+
+			$html .="<input class=blockwise value=\"".$relevant_exp[$i]."\">";
+		}
+		else{
+			$html .= "
+			<input  class=blockwise>";
+		}
+	}
+	$html .= "
 </div>
 
 <div>
 	<span>e.</span>
 	
-	<label>Duration of the present ailment :</label> 
-	<input class=blockwise>
-	<input class=blockwise>
-	<input class=blockwise>
-	
+	<label>Duration of the present ailment :</label> ";
+	for ($i=0; $i < 3; $i++) { 
+		# code...
+		if($i<count($duration_exp)){
+
+			$html .="<input class=blockwise value=\"".$duration_exp[$i]."\">";
+		}
+		else{
+			$html .= "
+			<input  class=blockwise>";
+		}
+	}
+	$html .= "
 	
 	
 	<span>Days</span>
 </div>
 <div>
-	<label>Date of first consultation :</label>
-	<input class=blockwise>
-	<input class=blockwise>
-	<input class=blockwise>
-	<input class=blockwise>
-	<input class=blockwise>
-	<input class=blockwise>
-	
-	<label>Past history of present ailment if any :</label>
-	<input class=blockwise>
-	<input class=blockwise>
-	<input class=blockwise>
-	<input class=blockwise>
-	<input class=blockwise>
-	<input class=blockwise>
-	<input class=blockwise>
-	<input class=blockwise>
-	<input class=blockwise>
-	<input class=blockwise>
-	<input class=blockwise>
-	<input class=blockwise>
-	<input class=blockwise>
-	<input class=blockwise>
-	<input class=blockwise>
-	<input class=blockwise>
-	
-	
-	
+	<label>Date of first consultation :</label>";
+	for ($i=0; $i < 6; $i++) { 
+		# code...
+		if($i<count($date_consultation_exp)){
 
+			$html .="<input class=blockwise value=\"".$date_consultation_exp[$i]."\">";
+		}
+		else{
+			$html .= "<input  class=blockwise>";
+		}
+	}
+	$html .= "
+	
+	<label>Past history of present ailment if any :</label>";
+	for ($i=0; $i < 16; $i++) { 
+		# code...
+		if($i<count($past_history_exp)){
+
+			$html .="<input class=blockwise value=\"".$past_history_exp[$i]."\">";
+		}
+		else{
+			$html .= "<input  class=blockwise>";
+		}
+	}
+	$html .= "
+	
 </div>
 <div>
 	<span>f.</span>
 	
-	<label>Provisional diagnosis :</label>
-	<input class=blockwise>
-	<input class=blockwise>
-	<input class=blockwise>
-	<input class=blockwise>
-	<input class=blockwise>
-	<input class=blockwise>
-	<input class=blockwise>
-	<input class=blockwise>
-	<input class=blockwise>
-	<input class=blockwise>
-	<input class=blockwise>
-	<input class=blockwise>
-	<input class=blockwise>
-	<input class=blockwise>
-	<input class=blockwise>
-	<input class=blockwise>
-	<input class=blockwise>
-	<input class=blockwise>
-	<input class=blockwise>
-	<input class=blockwise>
-	<input class=blockwise>
-	<input class=blockwise>
-	<input class=blockwise>
-	<input class=blockwise>
-	<input class=blockwise>
-	<input class=blockwise>
-	<input class=blockwise>
-	<input class=blockwise>
-	<input class=blockwise>
-	<input class=blockwise>
-	<input class=blockwise>
-	<input class=blockwise>
-	
+	<label>Provisional diagnosis :</label>";
+	for ($i=0; $i < 31; $i++) { 
+		# code...
+		if($i<count($diagnosis_exp)){
+
+			$html .="<input class=blockwise value=\"".$diagnosis_exp[$i]."\">";
+		}
+		else{
+			$html .= "<input  class=blockwise>";
+		}
+	}
+	$html .= "
 </div>
 <div>
 	<span>g.</span>
 	
-	<label>ICD 10 Code :</label>
-	<input class=blockwise>
-	<input class=blockwise>
-	<input class=blockwise>
-	<input class=blockwise>
-	<input class=blockwise>
-	<input class=blockwise>
-	<input class=blockwise>
-	<input class=blockwise>
-	<input class=blockwise>
-	<input class=blockwise>
-	<input class=blockwise>
-	
+	<label>ICD 10 Code :</label>";
+	for ($i=0; $i < 10; $i++) { 
+		# code...
+		if($i<count($icd_code_exp)){
+
+			$html .="<input class=blockwise value=\"".$icd_code_exp[$i]."\">";
+		}
+		else{
+			$html .= "<input  class=blockwise>";
+		}
+	}
+	$html .= "
 	
 </div>
 <div>
 	<span>h.</span>
 	
 	<label>Proposed line of treatment :</label>
-	<label>Medical Management Surgical Management Intensive care Investigation Non allopathic treatment.</label>
-	<input class=blockwise>
-	<input class=blockwise>
-	<input class=blockwise>
-	<input class=blockwise>
-	<input class=blockwise>
-	
+	<label>Medical Management Surgical Management Intensive care Investigation Non allopathic treatment.</label>";
+	for ($i=0; $i < 5; $i++) { 
+		# code...
+		if($i<count($line_treatment_exp)){
+
+			$html .="<input class=blockwise value=\"".$line_treatment_exp[$i]."\">";
+		}
+		else{
+			$html .= "<input  class=blockwise>";
+		}
+	}
+	$html .= "
 	
 	
 </div>
 <div>
 	<span>I.</span>
 	
-	<label>If Investigation &/or Medical Management provide :</label>
-	<input class=blockwise>
-	<input class=blockwise>
-	<input class=blockwise>
-	<input class=blockwise>
-	<input class=blockwise>
-	<input class=blockwise>
-	<input class=blockwise>
-	<input class=blockwise>
-	<input class=blockwise>
-	<input class=blockwise>
-	<input class=blockwise>
-	<input class=blockwise>
-	<input class=blockwise>
-	<input class=blockwise>
-	<input class=blockwise>
-	<input class=blockwise>
-	<input class=blockwise>
-	<input class=blockwise>
-	<input class=blockwise>
-	<input class=blockwise>
-	<input class=blockwise>
-	<input class=blockwise>
-	<input class=blockwise>
-	<input class=blockwise>
-	<input class=blockwise>
+	<label>If Investigation &/or Medical Management provide :</label>";
+	for ($i=0; $i < 24; $i++) { 
+		# code...
+		if($i<count($invest_medical_exp)){
+
+			$html .="<input class=blockwise value=\"".$invest_medical_exp[$i]."\">";
+		}
+		else{
+			$html .= "<input  class=blockwise>";
+		}
+	}
+	$html .= "
 	
 	
 </div>
 <div>
 	<span>j.</span>
 	
-	<label>Route of drug administartion :</label>
-	<input class=blockwise>
-	<input class=blockwise>
-	<input class=blockwise>
-	<input class=blockwise><input class=blockwise>
-	<input class=blockwise>
-	<input class=blockwise>
-	<input class=blockwise><input class=blockwise>
-	<input class=blockwise>
-	<input class=blockwise>
-	<input class=blockwise><input class=blockwise>
-	<input class=blockwise>
-	<input class=blockwise>
-	<input class=blockwise>
-	<input class=blockwise>
-	<input class=blockwise>
-	<input class=blockwise>
-	<input class=blockwise>
-	<input class=blockwise>
-	<input class=blockwise>
-	<input class=blockwise>
-	<input class=blockwise>
-	<input class=blockwise>
-	<input class=blockwise>
-	<input class=blockwise>
-	<input class=blockwise>
-	<input class=blockwise>
-	<input class=blockwise>
-	<input class=blockwise>
+	<label>Route of drug administartion :</label>";
+	for ($i=0; $i < 30; $i++) { 
+		# code...
+		if($i<count($route_drug_exp)){
+
+			$html .="<input class=blockwise value=\"".$route_drug_exp[$i]."\">";
+		}
+		else{
+			$html .= "<input  class=blockwise>";
+		}
+	}
+	$html .= "
+	
 </div>
 <div>
 	<span>k.</span>
 	
-	<label>If Surgical, name of surgery :</label>
-	<input class=blockwise>
-	<input class=blockwise>
-	<input class=blockwise>
-	<input class=blockwise><input class=blockwise>
-	<input class=blockwise>
-	<input class=blockwise>
-	<input class=blockwise><input class=blockwise>
-	<input class=blockwise>
-	<input class=blockwise>
-	<input class=blockwise><input class=blockwise>
-	<input class=blockwise>
-	<input class=blockwise>
-	<input class=blockwise><input class=blockwise>
-	<input class=blockwise>
-	<input class=blockwise>
-	<input class=blockwise><input class=blockwise>
-	<input class=blockwise>
-	<input class=blockwise>
-	<input class=blockwise><input class=blockwise>
-	<input class=blockwise>
-	<input class=blockwise>
-	<input class=blockwise><input class=blockwise>
-	<input class=blockwise>
-	<input class=blockwise>
-	<input class=blockwise>
+	<label>If Surgical, name of surgery :</label>";
+	for ($i=0; $i < 30; $i++) { 
+		# code...
+		if($i<count($name_surgery_exp)){
+
+			$html .="<input class=blockwise value=\"".$name_surgery_exp[$i]."\">";
+		}
+		else{
+			$html .= "<input  class=blockwise>";
+		}
+	}
+	$html .= "
 </div>
 <div>
 	<span>l.</span>
 	
-	<label>ICD 10 PCS Code :</label>
-	<input class=blockwise>
-	<input class=blockwise>
-	<input class=blockwise>
-	<input class=blockwise>
-	<input class=blockwise>
-	<input class=blockwise>
-	<input class=blockwise>
-	<input class=blockwise>
-	<input class=blockwise>
-	<input class=blockwise>
+	<label>ICD 10 PCS Code :</label>";
+	for ($i=0; $i < 10; $i++) { 
+		# code...
+		if($i<count($icd_pcs_exp)){
+
+			$html .="<input class=blockwise value=\"".$icd_pcs_exp[$i]."\">";
+		}
+		else{
+			$html .= "<input  class=blockwise>";
+		}
+	}
+	$html .= "
 	</div>
 <div>
 	<span>m.</span>
 	
-	<label>If other treatments provide details :</label>
-	<input class=blockwise>
-	<input class=blockwise>
-	<input class=blockwise>
-	<input class=blockwise><input class=blockwise>
-	<input class=blockwise>
-	<input class=blockwise>
-	<input class=blockwise><input class=blockwise>
-	<input class=blockwise>
-	<input class=blockwise>
-	<input class=blockwise><input class=blockwise>
-	<input class=blockwise>
-	<input class=blockwise>
-	<input class=blockwise><input class=blockwise>
-	<input class=blockwise>
-	<input class=blockwise>
-	<input class=blockwise><input class=blockwise>
-	<input class=blockwise>
-	<input class=blockwise>
-	<input class=blockwise><input class=blockwise>
-	<input class=blockwise>
-	<input class=blockwise>
-	<input class=blockwise><input class=blockwise>
-	<input class=blockwise>
+	<label>If other treatments provide details :</label>";
+	for ($i=0; $i < 30; $i++) { 
+		# code...
+		if($i<count($other_treatment_exp)){
+
+			$html .="<input class=blockwise value=\"".$other_treatment_exp[$i]."\">";
+		}
+		else{
+			$html .= "<input  class=blockwise>";
+		}
+	}
+	$html .= "
 	
 </div>
 <div class=margin></div>
 <div>
 	<span>n.</span>
 	
-	<label>How did injury occur :</label>
-	<input class=blockwise>
-	<input class=blockwise>
-	<input class=blockwise>
-	<input class=blockwise><input class=blockwise>
-	<input class=blockwise>
-	<input class=blockwise>
-	<input class=blockwise><input class=blockwise>
-	<input class=blockwise>
-	<input class=blockwise>
-	<input class=blockwise><input class=blockwise>
-	<input class=blockwise>
-	<input class=blockwise>
-	<input class=blockwise><input class=blockwise>
-	<input class=blockwise>
-	<input class=blockwise>
-	<input class=blockwise><input class=blockwise>
-	<input class=blockwise>
-	<input class=blockwise>
-	<input class=blockwise><input class=blockwise>
-	<input class=blockwise>
-	<input class=blockwise>
-	<input class=blockwise>
-	<input class=blockwise>
-	<input class=blockwise>
-	<input class=blockwise>
-	<input class=blockwise>
-	<input class=blockwise>
+	<label>How did injury occur :</label>";
+	for ($i=0; $i < 30; $i++) { 
+		# code...
+		if($i<count($injury_occur_exp)){
+
+			$html .="<input class=blockwise value=\"".$injury_occur_exp[$i]."\">";
+		}
+		else{
+			$html .= "<input  class=blockwise>";
+		}
+	}
+	$html .= "
 </div>
 "; 
 
