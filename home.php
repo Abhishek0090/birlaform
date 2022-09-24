@@ -49,12 +49,132 @@ input{
 }
 .blockwise{
 	width : 12px;
+
 	border : none;
+	
 }
 </style>';
 
 
-$html .="
+   	// $link = mysqli_connect("localhost","root","","birlaform");
+	// $no = 1;
+	// $q = "SELECT * FROM `admin` ORDER BY id DESC";
+	// $res = mysqli_query($link,$q);
+	// $row = mysqli_num_rows($res);
+	// if($row > 0) { 
+	// while($row = mysqli_fetch_assoc($res)) {
+	//     $html .= '<tr align="center"><td>Name : '.$no.'</td>
+	//     <td>Toll No:'.$row['toll_number'].'</td>
+	//     <td>'.$row['toll_fax'].'</td></tr>';
+	   
+	//     $no++;
+	// }
+	
+	$link = mysqli_connect("localhost","root","","birlaform");
+	$no = 0;
+	$q = "SELECT * FROM `admin` ORDER BY id ASC";
+	$p = "SELECT * FROM `patient` ORDER BY employeeid ASC";
+	$d = "SELECT * FROM `doctor` ORDER BY doctorid ASC";
+	$res = mysqli_query($link,$q);
+	$res1 = mysqli_query($link,$p);
+	$res2 = mysqli_query($link,$d);
+	$row = mysqli_num_rows($res);
+	$row1 = mysqli_num_rows($res1);
+	$row2 = mysqli_num_rows($res2);
+    
+   //for admin
+	if($row > 0) { 
+	if($row = mysqli_fetch_assoc($res) ) {
+
+        $toll_number = $row['toll_number'];
+        $toll_fax = $row['toll_fax'];
+        $toll_number_exp = str_split($toll_number);
+		$toll_fax_exp = str_split($toll_fax);
+    
+	}
+	} else {
+        echo "Something went wrong" ;
+	}
+
+	//for patient
+	if($row1 > 0) { 
+
+	
+	if($row1 = mysqli_fetch_assoc($res1) ) {
+
+        $employeeid = $row1['employeeid'];
+        $name_patient = $row1['name_patient'];
+        $gender = $row1['gender'];
+        $age = $row1['age'];
+        $dob = $row1['dob'];
+        $contact_patient = $row1['contact_patient'];
+        $contact_relative = $row1['contact_relative'];
+        $insured_number = $row1['insured_number'];
+        $policy_number = $row1['policy_number'];
+        $mediclaim = $row1['mediclaim'];
+        $company_name = $row1['company_name'];
+        $physician = $row1['physician'];
+        $name_physician = $row1['name_physician'];
+        $contact_physician = $row1['contact_physician'];
+
+		//split into string char
+        $employeeid_exp = str_split($employeeid);
+		$name_patient_exp = str_split($name_patient);
+		$gender_exp = str_split($gender);
+		$age_exp = str_split($age);
+		$dob_exp = str_split($dob);
+		$contact_patient_exp = str_split($contact_patient);
+		$contact_relative_exp = str_split($contact_relative);
+		$insured_number_exp = str_split($insured_number);
+		$policy_number_exp = str_split($policy_number);
+		$mediclaim_exp = str_split($mediclaim);
+		$company_name_exp = str_split($company_name);
+		$physician_exp = str_split($physician);
+		$name_physician_exp = str_split($name_physician);
+		$contact_physician_exp = str_split($contact_physician);
+		
+	}
+	} else {
+        echo "Something went wrong" ;
+	}
+
+	//for doctor
+
+	if($row2 > 0) { 
+	if($row2 = mysqli_fetch_assoc($res2) ) {
+
+        $name_doctor = $row2['name_doctor'];
+        $toll_fax = $row2['toll_fax'];
+		// <td>'.$row['name_doctor'].'</td>
+	    // <td>'.$row['contact_doctor'].'</td>
+	    // <td>'.$row['nature_illness'].'</td>
+	    // <td>'.$row['relevant'].'</td>
+	    // <td>'.$row['duration'].'</td>
+	    // <td>'.$row['date_consultation'].'</td>
+	    // <td>'.$row['past_history'].'</td>
+	    // <td>'.$row['diagnosis'].'</td>
+	    // <td>'.$row['icd_code'].'</td>
+	    // <td>'.$row['line_treatment'].'</td>
+	    // <td>'.$row['invest_medical'].'</td>
+	    // <td>'.$row['route_drug'].'</td>
+	    // <td>'.$row['name_surgery'].'</td>
+	    // <td>'.$row['icd_pcs'].'</td>
+	    // <td>'.$row['other_treatment'].'</td>
+	    // <td>'.$row['injury_occur'].'</td>';
+	   
+
+
+
+
+		//split into string char
+        $name_doctor_exp = str_split($name_doctor);
+		$toll_fax_exp = str_split($toll_fax);
+    
+	}
+	} else {
+        echo "Something went wrong" ;
+	}
+	$html .="
 
 <div class=margin>
 	<h3>DETAILS OF THE THIRD PARTY ADMINISTRATOR</h3><P>(To be filled in block letters)</P>
@@ -64,35 +184,50 @@ $html .="
 	</div>
 	<div>
 	<span>b.</span>
-<label>Toll free phone number</label>
-<input class=blockwise value=1>
-<input class=blockwise value=2>
-<input  class=blockwise value=3>
-<input  class=blockwise value=4>
-<input  class=blockwise value=5>
-<input  class=blockwise value=6>
-<input  class=blockwise value=7>
-<input  class=blockwise value=8>
-<input  class=blockwise value=9>
-<input  class=blockwise value=0>
-<input  class=blockwise value=1>
-<input  class=blockwise value=2>
-<input  class=blockwise value=3>
+<label>Toll free phone number</label>";
+for ($i=0; $i < 13; $i++) { 
+	# code...
+	if($i<count($toll_number_exp)){
+
+		$html .="<input class=blockwise value=\"".$toll_number_exp[$i]."\">";
+	}
+	else{
+		$html .= "
+		<input  class=blockwise>";
+	}
+	
+}
+$html .="
+	<input class=blockwise>
+	<input  class=blockwise>
+	<input  class=blockwise>
+	<input  class=blockwise>
+	<input  class=blockwise>
+	<input  class=blockwise>
+	<input  class=blockwise>
+	<input  class=blockwise>
+	<input  class=blockwise>
+	<input  class=blockwise>
+	<input  class=blockwise>
+<input  class=blockwise>
  </div>
 	<div>
 	<span>c.</span>
 
-<label>Toll free Fax</label>
-<input  class=blockwise>
-<input  class=blockwise>
-<input  class=blockwise>
-<input  class=blockwise>
-<input  class=blockwise>
-<input  class=blockwise>
-<input  class=blockwise>
-<input  class=blockwise>
-<input  class=blockwise>
-<input  class=blockwise>
+<label>Toll free Fax</label>";
+for ($i=0; $i < 10; $i++) { 
+	# code...
+	if($i<count($toll_fax_exp)){
+
+		$html .="<input class=blockwise value=\"".$toll_fax_exp[$i]."\">";
+	}
+	else{
+		$html .= "
+		<input  class=blockwise>";
+	}
+}
+
+$html .="
 </div>
 </div>
 
@@ -100,46 +235,23 @@ $html .="
 <div>
 <span>a.</span>
 
-	<label >Name of the Patient</label>
-	<input  class=blockwise>
-	<input  class=blockwise>
-	<input  class=blockwise>
-	<input  class=blockwise>
-	<input  class=blockwise>
-	<input  class=blockwise>
-	<input  class=blockwise>
-	<input  class=blockwise>
-	<input  class=blockwise>
-	<input  class=blockwise>
-	<input  class=blockwise>
-	<input  class=blockwise>
-	<input  class=blockwise>
-	<input  class=blockwise>
-	<input  class=blockwise>
-	<input  class=blockwise>
-	<input  class=blockwise>
-	<input  class=blockwise>
-	<input  class=blockwise>
-	<input  class=blockwise>
-	<input  class=blockwise>
-	<input  class=blockwise>
-	<input  class=blockwise>
-	<input  class=blockwise>
-	<input  class=blockwise>
-	<input  class=blockwise>
-	<input  class=blockwise>
-	<input  class=blockwise>
-	<input  class=blockwise>
-	<input  class=blockwise>
-	<input  class=blockwise>
-	<input  class=blockwise>
-	<input  class=blockwise>
+	<label >Name of the Patient</label>";
+	for ($i=0; $i < 34; $i++) { 
+		# code...
+		if($i<count($name_patient_exp)){
 
+			$html .="<input class=blockwise value=\"".$name_patient_exp[$i]."\">";
+		}
+		else{
+			$html .= "
+			<input  class=blockwise>";
+		}
+	}
+	$html .= "
 	</div>
 <div>
 <span>b.</span>
 	<label>Gender</label>
-
 	
 <input type=checkbox checked >Male
 <label></label>
@@ -154,108 +266,111 @@ $html .="
 	 <span>c.</span>
 	
 		
-		<label>Age</label>
-		<input  class=blockwise>
-		<input  class=blockwise>
-		<input  class=blockwise>
-		<input  class=blockwise>
+		<label>Age</label>";
+		for ($i=0; $i < 4; $i++) { 
+			# code...
+			if($i<count($age_exp)){
+	
+				$html .="<input class=blockwise value=\"".$age_exp[$i]."\">";
+			}
+			else{
+				$html .= "
+				<input  class=blockwise>";
+			}
+		}
+		$html .= "
 		Years Months
 </div>
 
 <div>
 <span>d.</span>
 
-	<label>Date of Birth</label>
-	<input class=blockwise>
-	<input class=blockwise>
-	<input class=blockwise>
-	<input class=blockwise>
-	<input class=blockwise>
-	<input class=blockwise>
-	<input class=blockwise>
+	<label>Date of Birth</label>";
+	for ($i=0; $i < 9; $i++) { 
+		# code...
+		if($i<count($dob_exp)){
+
+			$html .="<input class=blockwise value=\"".$dob_exp[$i]."\">";
+		}
+		else{
+			$html .= "
+			<input  class=blockwise>";
+		}
+	}
+	$html .= "
+	
 	</div>
 
 <div>
 <span>e.</span>
 
-	<label>Contact Number</label>
-	<input class=blockwise>
-	<input class=blockwise>
-	<input class=blockwise>
-	<input class=blockwise>
-	<input class=blockwise>
-	<input class=blockwise>
-	<input class=blockwise>
-	<input class=blockwise>
-	<input class=blockwise>
-	<input class=blockwise>
+	<label>Contact Number</label>";
+	for ($i=0; $i < 10; $i++) { 
+		# code...
+		if($i<count($contact_patient_exp)){
+
+			$html .="<input class=blockwise value=\"".$contact_patient_exp[$i]."\">";
+		}
+		else{
+			$html .= "
+			<input  class=blockwise>";
+		}
+	}
+	$html .= "
 </div>
 
 <div>
 <span>f.</span>
 
-	<label>Contact number of attending relative</label>
-	<input class=blockwise>
-	<input class=blockwise>
-	<input class=blockwise>
-	<input class=blockwise>
-	<input class=blockwise>
-	<input class=blockwise>
-	<input class=blockwise>
-	<input class=blockwise>
-	<input class=blockwise>
-	<input class=blockwise>
+	<label>Contact number of attending relative</label>";
+	for ($i=0; $i < 10; $i++) { 
+		# code...
+		if($i<count($contact_relative_exp)){
+
+			$html .="<input class=blockwise value=\"".$contact_relative_exp[$i]."\">";
+		}
+		else{
+			$html .= "
+			<input  class=blockwise>";
+		}
+	}
+	$html .= "
 </div>
 
 <div>
 <span>g.</span>
 
-	<label>Insured Card ID number</label>
-	<input class=blockwise>
-	<input class=blockwise>
-	<input class=blockwise>
-	<input class=blockwise>
-	<input class=blockwise>
-	<input class=blockwise>
-	<input class=blockwise>
-	<input class=blockwise>
-	<input class=blockwise>
-	<input class=blockwise>
+	<label>Insured Card ID number</label>";
+	for ($i=0; $i < 10; $i++) { 
+		# code...
+		if($i<count($insured_number_exp)){
+
+			$html .="<input class=blockwise value=\"".$insured_number_exp[$i]."\">";
+		}
+		else{
+			$html .= "
+			<input  class=blockwise>";
+		}
+	}
+	$html .= "
 </div>
 
 <div>
 <span>h.</span>
 
-	<label>Policy number / Name of corporate</label>
-	<input class=blockwise>
-	<input class=blockwise>
-	<input class=blockwise>
-	<input class=blockwise>
-	<input class=blockwise>
-	<input class=blockwise>
-	<input class=blockwise>
-	<input class=blockwise>
-	<input class=blockwise>
-	<input class=blockwise>
-	<input class=blockwise>
-	<input class=blockwise>
-	<input class=blockwise>
-	<input class=blockwise>
-	<input class=blockwise>
-	<input class=blockwise>
-	<input class=blockwise>
-	<input class=blockwise>
-	<input class=blockwise>
-	<input class=blockwise>
-	<input class=blockwise>
-	<input class=blockwise>
-	<input class=blockwise>
-	<input class=blockwise>
-	<input class=blockwise>
-	<input class=blockwise>
-	<input class=blockwise>
-	<input class=blockwise>
-	<input class=blockwise>
+	<label>Policy number / Name of corporate</label>";
+	for ($i=0; $i < 28; $i++) { 
+		# code...
+		if($i<count($policy_number_exp)){
+
+			$html .="<input class=blockwise value=\"".$policy_number_exp[$i]."\">";
+		}
+		else{
+			$html .= "
+			<input  class=blockwise>";
+		}
+	}
+	$html .= "
 	
 	
 	
@@ -264,36 +379,20 @@ $html .="
 <div>
 <span>i.</span>
 
-	<label>Employee ID</label>
-	<input class=blockwise>
-	<input class=blockwise>
-	<input class=blockwise>
-	<input class=blockwise>
-	<input class=blockwise>
-	<input class=blockwise>
-	<input class=blockwise>
-	<input class=blockwise>
-	<input class=blockwise>
-	<input class=blockwise>
-	<input class=blockwise>
-	<input class=blockwise>
-	<input class=blockwise>
-	<input class=blockwise>
-	<input class=blockwise>
-	<input class=blockwise>
-	<input class=blockwise>
-	<input class=blockwise>
-	<input class=blockwise>
-	<input class=blockwise>
-	<input class=blockwise>
-	<input class=blockwise>
-	<input class=blockwise>
-	<input class=blockwise>
-	<input class=blockwise>
-	<input class=blockwise>
-	<input class=blockwise>
-	<input class=blockwise>
-	<input class=blockwise>
+	<label>Employee ID</label>";
+	for ($i=0; $i < 28; $i++) { 
+		# code...
+		if($i<count($employeeid_exp)){
+
+			$html .="<input class=blockwise value=\"".$employeeid_exp[$i]."\">";
+		}
+		else{
+			$html .= "
+			<input  class=blockwise>";
+		}
+	}
+	$html .= "
+	
 	
 </div>
 
@@ -320,37 +419,19 @@ Yes
 <span>k.</span>
 
 	<label>Company Name:</label>
-	<label>Give details</label>
-	<input class=blockwise>
-	<input class=blockwise>
-	<input class=blockwise>
-	<input class=blockwise>
-	<input class=blockwise>
-	<input class=blockwise>
-	<input class=blockwise>
-	<input class=blockwise>
-	<input class=blockwise>
-	<input class=blockwise>
-	<input class=blockwise>
-	<input class=blockwise>
-	<input class=blockwise>
-	<input class=blockwise>
-	<input class=blockwise>
-	<input class=blockwise>
-	<input class=blockwise>
-	<input class=blockwise>
-	<input class=blockwise>
-	<input class=blockwise>
-	<input class=blockwise>
-	<input class=blockwise>
-	<input class=blockwise>
-	<input class=blockwise>
-	<input class=blockwise>
-	<input class=blockwise>
-	<input class=blockwise>
-	<input class=blockwise>
-	<input class=blockwise>
-	
+	<label>Give details</label>";
+	for ($i=0; $i < 31; $i++) { 
+		# code...
+		if($i<count($company_name_exp)){
+
+			$html .="<input class=blockwise value=\"".$company_name_exp[$i]."\">";
+		}
+		else{
+			$html .= "
+			<input  class=blockwise>";
+		}
+	}
+	$html .= "
 </div>
 <div>
 <span>l.</span>
@@ -368,54 +449,36 @@ Yes
 <div>
 <span>m.</span>
 
-	<label>Name of the family physician</label>
-	<input class=blockwise>
-	<input class=blockwise>
-	<input class=blockwise>
-	<input class=blockwise>
-	<input class=blockwise>
-	<input class=blockwise>
-	<input class=blockwise>
-	<input class=blockwise>
-	<input class=blockwise>
-	<input class=blockwise>
-	<input class=blockwise>
-	<input class=blockwise>
-	<input class=blockwise>
-	<input class=blockwise>
-	<input class=blockwise>
-	<input class=blockwise>
-	<input class=blockwise>
-	<input class=blockwise>
-	<input class=blockwise>
-	<input class=blockwise>
-	<input class=blockwise>
-	<input class=blockwise>
-	<input class=blockwise>
-	<input class=blockwise>
-	<input class=blockwise>
-	<input class=blockwise>
-	<input class=blockwise>
-	<input class=blockwise>
-	<input class=blockwise>
-	
+	<label>Name of the family physician</label>";
+	for ($i=0; $i < 28; $i++) { 
+		# code...
+		if($i<count($name_physician_exp)){
+
+			$html .="<input class=blockwise value=\"".$name_physician_exp[$i]."\">";
+		}
+		else{
+			$html .= "
+			<input  class=blockwise>";
+		}
+	}
+	$html .= "
 </div>
 <div>
 <span>n.</span>
 
-	<label>Contact number if any :</label>
-	<input class=blockwise>
-	<input class=blockwise>
-	<input class=blockwise>
-	<input class=blockwise>
-	<input class=blockwise>
-	<input class=blockwise>
-	<input class=blockwise>
-	<input class=blockwise>
-	<input class=blockwise>
-	<input class=blockwise>
-	<input class=blockwise>
-	
+	<label>Contact number if any :</label>";
+	for ($i=0; $i < 10; $i++) { 
+		# code...
+		if($i<count($contact_physician_exp)){
+
+			$html .="<input class=blockwise value=\"".$contact_physician_exp[$i]."\">";
+		}
+		else{
+			$html .= "
+			<input  class=blockwise>";
+		}
+	}
+	$html .= "
 	
 	
 	</div>
@@ -429,37 +492,19 @@ Yes
 	<div>
 		<span>a.</span>
 		
-		<label>Name of the treating doctor :</label>
-
-		<input class=blockwise>
-	<input class=blockwise>
-	<input class=blockwise>
-	<input class=blockwise>
-	<input class=blockwise>
-	<input class=blockwise>
-	<input class=blockwise>
-	<input class=blockwise>
-	<input class=blockwise>
-	<input class=blockwise>
-	<input class=blockwise>
-	<input class=blockwise>
-	<input class=blockwise>
-	<input class=blockwise>
-	<input class=blockwise>
-	<input class=blockwise>
-	<input class=blockwise>
-	<input class=blockwise>
-	<input class=blockwise>
-	<input class=blockwise>
-	<input class=blockwise>
-	<input class=blockwise>
-	<input class=blockwise>
-	<input class=blockwise>
-	<input class=blockwise>
-	<input class=blockwise>
-	<input class=blockwise>
-	<input class=blockwise>
-	<input class=blockwise>
+		<label>Name of the treating doctor :</label>";
+		for ($i=0; $i < 28; $i++) { 
+			# code...
+			if($i<count($name_doctor_exp)){
+	
+				$html .="<input class=blockwise value=\"".$name_doctor_exp[$i]."\">";
+			}
+			else{
+				$html .= "
+				<input  class=blockwise>";
+			}
+		}
+		$html .= "
 	
 	</div> 
 	<div>
