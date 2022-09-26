@@ -1,7 +1,7 @@
 <?php include 'conn.php';
  // Taking all 5 values from the form data(input)
 
- if(isset($_POST['toll_number']) && isset($_POST['toll_fax']) && isset($_POST['name_patient']) && isset($_POST['gender']) && isset($_POST['age']) && isset($_POST['dob']) && isset($_POST['contact_patient']) && isset($_POST['contact_relative']) && isset($_POST['insured_number'])&& isset($_POST['policy_number'])&& isset($_POST['mediclaim'])&& isset($_POST['company_name']) && isset($_POST['physician'])&& isset($_POST['name_physician'])&& isset($_POST['contact_physician'])&& isset($_POST['name_doctor'])&& isset($_POST['contact_doctor'])&& isset($_POST['nature_illness'])&& isset($_POST['relevant'])&& isset($_POST['duration'])&& isset($_POST['date_consultation'])&& isset($_POST['past_history'])&& isset($_POST['diagnosis'])&& isset($_POST['icd_code'])&& isset($_POST['line_treatment']) && isset($_POST['invest_medical']) && isset($_POST['route_drug']) && isset($_POST['name_surgery']) && isset($_POST['icd_pcs']) && isset($_POST['other_treatment']) && isset($_POST['injury_occur'])){
+ if(isset($_POST['toll_number']) || isset($_POST['toll_fax']) || isset($_POST['name_patient']) || isset($_POST['gender']) || isset($_POST['age']) || isset($_POST['dob']) || isset($_POST['contact_patient']) || isset($_POST['contact_relative']) || isset($_POST['insured_number'])|| isset($_POST['policy_number'])|| isset($_POST['mediclaim'])|| isset($_POST['company_name']) || isset($_POST['physician'])|| isset($_POST['name_physician'])|| isset($_POST['contact_physician'])|| isset($_POST['name_doctor'])|| isset($_POST['contact_doctor'])|| isset($_POST['nature_illness'])|| isset($_POST['relevant'])|| isset($_POST['duration'])|| isset($_POST['date_consultation'])|| isset($_POST['past_history'])|| isset($_POST['diagnosis'])|| isset($_POST['icd_code'])|| isset($_POST['line_treatment']) || isset($_POST['invest_medical']) || isset($_POST['route_drug']) || isset($_POST['name_surgery']) || isset($_POST['icd_pcs']) || isset($_POST['other_treatment']) || isset($_POST['injury_occur'])){
 
 
 //     // print_r($_POST);die;
@@ -11,7 +11,7 @@
     
   
 //patient       
-$employeeid = mysqli_real_escape_string($conn, $_POST['employeeid']);
+$employeeid = !empty($_POST['employeeid']) ? mysqli_real_escape_string($conn, $_POST['employeeid']) : '';
 $name_patient = mysqli_real_escape_string($conn, $_POST['name_patient']);
 $gender = mysqli_real_escape_string($conn, $_POST['gender']);
 $age = mysqli_real_escape_string($conn, $_POST['age']);
@@ -53,11 +53,12 @@ $injury_occur  = mysqli_real_escape_string($conn, $_POST['injury_occur']);
         
     }
     else{
-        
+        print_r($_POST); die;
         //inserting data
 $sql = "INSERT INTO admin(toll_number,toll_fax,employeeid,name_patient,gender,age,dob,contact_patient,contact_relative,insured_number,policy_number,mediclaim,company_name,physician,name_physician,contact_physician,name_doctor,contact_doctor,nature_illness,relevant,duration,date_consultation,past_history,diagnosis,icd_code,line_treatment,invest_medical,route_drug,name_surgery,icd_pcs,other_treatment,injury_occur) VALUES('$toll_number','$toll_fax','$employeeid','$name_patient','$gender','$age','$dob','$contact_patient','$contact_relative','$insured_number','$policy_number','$mediclaim','$company_name','$physician','$name_physician','$contact_physician','$name_doctor','$contact_doctor','$nature_illness','$relevant','$duration','$date_consultation','$past_history','$diagnosis','$icd_code','$line_treatment','$invest_medical','$route_drug','$name_surgery','$icd_pcs','$other_treatment','$injury_occur')";
         mysqli_query($conn,$sql);
         $last_insert_id = mysqli_insert_id($conn);
+
         echo $last_insert_id;exit;
     }}
                ?>

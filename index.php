@@ -7,7 +7,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
-     <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" /> -->
      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>  
     <link rel="stylesheet" href="style.css">
   </head>
@@ -47,10 +46,7 @@
                     <div class="form-group">  
                         <input type="hidden" name="post_id" id="post_id">
                     </div>  -->
-                    <div class="form-group">  
-                     <input type="hidden" name="post_id" id="post_id" />  
-                     <div id="autoSave"></div>  
-                </div>  
+                    
 
                 </div>
 
@@ -285,7 +281,10 @@
             
                
         <!-- <input type="submit" class="btn btn-success" name="submit" id="submit"> -->
-
+        <div class="form-group">  
+                     <input type="hidden" name="post_id" id="post_id" />  
+                     <div id="autoSave"></div>  
+                </div>  
             </div>
 
         </form>
@@ -293,18 +292,19 @@
         </div>
 
         <!-- <script src="plugins/jquery/jquery.min.js"></script> -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js" integrity="sha512-aVKKRRi/Q/YV+4mjoKBsE4x3H+BkegoM/em46NNlCqNTmUYADjBbeNefNxYV7giUp0VxICtqdrbqU7iVaeZNXA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.min.js" integrity="sha384-7VPbUDkoPSGFnVtYi0QogXtr74QeVeeIs99Qfg5YCF+TidwNdjvaKZX19NZ/e6oz" crossorigin="anonymous"></script>
-<script>
 
-    
-   
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
+
+<script>
+  
 $(document).ready(function () {
-      function autoSave()  
-      {  
+      $('.autosave').change(function (e) { 
+        e.preventDefault();
+    
            var toll_number = $('#toll_number').val();  
+        //    alert(toll_number);return false;
            var toll_fax = $('#toll_fax').val();  
+           
            var name_patient = $('#name_patient').val();  
            var gender = $('#gender').val();  
            var age = $('#age').val();  
@@ -336,8 +336,7 @@ $(document).ready(function () {
            var injury_occur = $('#injury_occur').val();  
            var post_id = $('#post_id').val(); 
           
-           if(toll_number != '' && toll_fax != '' && name_patient != '' && gender != '' &&age != '' && dob != '' &&contact_patient != '' && contact_relative != '' &&insured_number != '' && policy_number != '' &&mediclaim != '' && company_name != '' &&physician != '' && name_physician != '' &&contact_physician != '' && name_doctor != '' &&contact_doctor != '' && nature_illness != '' &&relevant != '' && duration != '' &&date_consultation != '' && past_history != '' &&diagnosis != '' && icd_code != '' &&line_treatment != '' && invest_medical != '' &&route_drug != '' && name_surgery != '' &&icd_pcs != '' && other_treatment != ''  && injury_occur != ''  )  
-           {  
+           
                 $.ajax({  
                      url:"admin.php",  
                      method:"POST",  
@@ -383,19 +382,13 @@ $(document).ready(function () {
                           {  
                                $('#post_id').val(data);  
                           }  
-                          $('#autoSave').text("Post save as draft");  
-                          setInterval(function(){  
-                               $('#autoSave').text('');  
-                          }, 2000);  
+                         
                      }  
                 });  
-           }            
-      }  
-      setInterval(function(){   
-           autoSave();   
-           }, 10000);  
-
+      
+            });
         });
+
     // $('.autosave').on('change',function(){
     //     var field_id = $(this).attr('id');
     //     var field_val = $('#'+field_id).val();
