@@ -5,16 +5,6 @@ include 'conn.php';
 $toll_number = $_REQUEST['toll_number'];
 $toll_fax = $_REQUEST['toll_fax'];
 
-$sql1 = "INSERT INTO admin(toll_number,toll_fax) VALUES('$toll_number','$toll_fax')";
-$result1 = mysqli_query($conn,$sql1);
-if($result1){
-    echo "data saved successfully";
-   
-}
-else{
-    echo "Error occured";
-}
-
 //patient
 $employeeid = $_REQUEST['employeeid'];
 $name_patient = $_REQUEST['name_patient'];
@@ -30,15 +20,6 @@ $company_name = $_REQUEST['company_name'];
 $physician = $_REQUEST['physician'];
 $name_physician = $_REQUEST['name_physician'];
 $contact_physician = $_REQUEST['contact_physician'];
-
-$sql2 = "INSERT INTO patient(employeeid,name_patient,gender,age,dob,contact_patient,contact_relative,insured_number,policy_number,mediclaim,company_name,physician,name_physician,contact_physician) VALUES('$employeeid','$name_patient','$gender','$age','$dob','$contact_patient','$contact_relative','$insured_number','$policy_number','$mediclaim','$company_name','$physician','$name_physician','$contact_physician')";
-$result2 = mysqli_query($conn,$sql2);
-if($result2){
-    echo "data saved successfully";}
-    else{
-        echo "Error occured";
-    }
-    // print_r($result2);die;
 
 //doctor
 
@@ -61,18 +42,42 @@ $injury_occur  = $_REQUEST['injury_occur'];
 
 
 
-// print_r($_REQUEST);die;
-$sql3 = "INSERT INTO doctor(name_doctor,contact_doctor,nature_illness,relevant,duration,date_consultation,past_history,diagnosis,icd_code,line_treatment,invest_medical,route_drug,name_surgery,icd_pcs,other_treatment,injury_occur) VALUES('$name_doctor','$contact_doctor','$nature_illness','$relevant','$duration','$date_consultation','$past_history','$diagnosis','$icd_code','$line_treatment','$invest_medical','$route_drug','$name_surgery','$icd_pcs','$other_treatment','$injury_occur')";
-$result3 = mysqli_query($conn,$sql3);
-
-if($result3){
+$sql1 = "INSERT INTO admin(toll_number,toll_fax,employeeid,name_patient,gender,age,dob,contact_patient,contact_relative,insured_number,policy_number,mediclaim,company_name,physician,name_physician,contact_physician,name_doctor,contact_doctor,nature_illness,relevant,duration,date_consultation,past_history,diagnosis,icd_code,line_treatment,invest_medical,route_drug,name_surgery,icd_pcs,other_treatment,injury_occur) VALUES('$toll_number','$toll_fax','$employeeid','$name_patient','$gender','$age','$dob','$contact_patient','$contact_relative','$insured_number','$policy_number','$mediclaim','$company_name','$physician','$name_physician','$contact_physician','$name_doctor','$contact_doctor','$nature_illness','$relevant','$duration','$date_consultation','$past_history','$diagnosis','$icd_code','$line_treatment','$invest_medical','$route_drug','$name_surgery','$icd_pcs','$other_treatment','$injury_occur')";
+$result1 = mysqli_query($conn,$sql1);
+if($result1){
     echo "data saved successfully";
+   
 }
 else{
     echo "Error occured";
 }
 
-if($result1 && $result2  && $result3 ){
+
+
+// $sql2 = "INSERT INTO patient(employeeid,name_patient,gender,age,dob,contact_patient,contact_relative,insured_number,policy_number,mediclaim,company_name,physician,name_physician,contact_physician) VALUES('$employeeid','$name_patient','$gender','$age','$dob','$contact_patient','$contact_relative','$insured_number','$policy_number','$mediclaim','$company_name','$physician','$name_physician','$contact_physician')";
+// $result2 = mysqli_query($conn,$sql2);
+// if($result2){
+//     echo "data saved successfully";}
+//     else{
+//         echo "Error occured";
+//     }
+//     // print_r($result2);die;
+
+
+
+
+// // print_r($_REQUEST);die;
+// $sql3 = "INSERT INTO doctor(name_doctor,contact_doctor,nature_illness,relevant,duration,date_consultation,past_history,diagnosis,icd_code,line_treatment,invest_medical,route_drug,name_surgery,icd_pcs,other_treatment,injury_occur) VALUES('$name_doctor','$contact_doctor','$nature_illness','$relevant','$duration','$date_consultation','$past_history','$diagnosis','$icd_code','$line_treatment','$invest_medical','$route_drug','$name_surgery','$icd_pcs','$other_treatment','$injury_occur')";
+// $result3 = mysqli_query($conn,$sql3);
+
+// if($result3){
+//     echo "data saved successfully";
+// }
+// else{
+//     echo "Error occured";
+// }
+
+if($result1 ){
     header("Location:index.php");
 }
 // //generating pdf from entries

@@ -1,18 +1,53 @@
 <?php include 'conn.php';
  // Taking all 5 values from the form data(input)
 
- if(isset($_POST['toll_number']) && isset($_POST['toll_fax'])){
+ if(isset($_POST['toll_number']) && isset($_POST['toll_fax']) && isset($_POST['name_patient']) && isset($_POST['gender']) && isset($_POST['age']) && isset($_POST['dob']) && isset($_POST['contact_patient']) && isset($_POST['contact_relative']) && isset($_POST['insured_number'])&& isset($_POST['policy_number'])&& isset($_POST['mediclaim'])&& isset($_POST['company_name']) && isset($_POST['physician'])&& isset($_POST['name_physician'])&& isset($_POST['contact_physician'])&& isset($_POST['name_doctor'])&& isset($_POST['contact_doctor'])&& isset($_POST['nature_illness'])&& isset($_POST['relevant'])&& isset($_POST['duration'])&& isset($_POST['date_consultation'])&& isset($_POST['past_history'])&& isset($_POST['diagnosis'])&& isset($_POST['icd_code'])&& isset($_POST['line_treatment']) && isset($_POST['invest_medical']) && isset($_POST['route_drug']) && isset($_POST['name_surgery']) && isset($_POST['icd_pcs']) && isset($_POST['other_treatment']) && isset($_POST['injury_occur'])){
 
 
 //     // print_r($_POST);die;
-    $post_id = mysqli_real_escape_string($conn, $_POST["postid"]); 
-    $toll_number = mysqli_real_escape_string($conn, $_POST["toll_number"]);
-    $toll_fax = mysqli_real_escape_string($conn, $_POST["toll_fax"]);
+    $post_id = mysqli_real_escape_string($conn, $_POST['post_id']); 
+    $toll_number = mysqli_real_escape_string($conn, $_POST['toll_number']);
+    $toll_fax = mysqli_real_escape_string($conn, $_POST['toll_fax']);
+    
+  
+//patient       
+$employeeid = mysqli_real_escape_string($conn, $_POST['employeeid']);
+$name_patient = mysqli_real_escape_string($conn, $_POST['name_patient']);
+$gender = mysqli_real_escape_string($conn, $_POST['gender']);
+$age = mysqli_real_escape_string($conn, $_POST['age']);
+$dob = mysqli_real_escape_string($conn, $_POST['dob']);
+$contact_patient = mysqli_real_escape_string($conn, $_POST['contact_patient']);
+$contact_relative = mysqli_real_escape_string($conn, $_POST['contact_relative']);
+$insured_number = mysqli_real_escape_string($conn, $_POST['insured_number']);
+$policy_number = mysqli_real_escape_string($conn, $_POST['policy_number']);
+$mediclaim = mysqli_real_escape_string($conn, $_POST['mediclaim']);
+$company_name = mysqli_real_escape_string($conn, $_POST['company_name']);
+$physician = mysqli_real_escape_string($conn, $_POST['physician']);
+$name_physician = mysqli_real_escape_string($conn, $_POST['name_physician']);
+$contact_physician = mysqli_real_escape_string($conn, $_POST['contact_physician']);
 
-    if($post_id != ''){
+//doctor
+$name_doctor  = mysqli_real_escape_string($conn, $_POST['name_doctor']);
+$contact_doctor  = mysqli_real_escape_string($conn, $_POST['contact_doctor']);
+$nature_illness  = mysqli_real_escape_string($conn, $_POST['nature_illness']);
+$relevant  = mysqli_real_escape_string($conn, $_POST['relevant']);
+$duration  = mysqli_real_escape_string($conn, $_POST['duration']);
+$date_consultation  = mysqli_real_escape_string($conn, $_POST['date_consultation']);
+$past_history  = mysqli_real_escape_string($conn, $_POST['past_history']);
+$diagnosis  = mysqli_real_escape_string($conn, $_POST['diagnosis']);
+$icd_code  = mysqli_real_escape_string($conn, $_POST['icd_code']);
+$line_treatment  = mysqli_real_escape_string($conn, $_POST['line_treatment']);
+$invest_medical  = mysqli_real_escape_string($conn, $_POST['invest_medical']);
+$route_drug  = mysqli_real_escape_string($conn, $_POST['route_drug']);
+$name_surgery  = mysqli_real_escape_string($conn, $_POST['name_surgery']);
+$icd_pcs  = mysqli_real_escape_string($conn, $_POST['icd_pcs']);
+$other_treatment  = mysqli_real_escape_string($conn, $_POST['other_treatment']);
+$injury_occur  = mysqli_real_escape_string($conn, $_POST['injury_occur']);
+
+    if($_POST['post_id'] != ''){
 
         //updating data
-        $sql = "UPDATE  admin SET toll_number='".$toll_number."' , toll_fax='".$toll_fax."' where id = '".$_POST['postid']."'";
+        $sql = "UPDATE  admin SET toll_number='".$toll_number."' , toll_fax='".$toll_fax."' , name_patient = '".$name_patient."', gender = '".$gender."' , age = '".$age."' , dob = '".$dob."' , contact_patient = '".$contact_patient."' , contact_relative = '".$contact_relative."' , insured_number = '".$insured_number."' , policy_number = '".$policy_number."' , mediclaim = '".$mediclaim."' , company_name = '".$company_name."' ,  physician = '".$physician."' , name_physician = '".$name_physician."' , contact_physician = '".$contact_physician."' , name_doctor = '".$name_doctor."' , contact_doctor = '".$contact_doctor."' , nature_illness = '".$nature_illness."' , relevant = '".$relevant."' , duration = '".$duration."' , date_consultation = '".$date_consultation."' , past_history = '".$past_history."' , diagnosis = '".$diagnosis."' , icd_code = '".$icd_code."', line_treatment = '".$line_treatment."' , invest_medical = '".$invest_medical."' , route_drug = '".$route_drug."' , name_surgery = '".$name_surgery."' , icd_pcs = '".$icd_pcs."' , other_treatment = '".$other_treatment."' , injury_occur = '".$injury_occur."'    where id = '".$_POST['post_id']."'";
         mysqli_query($conn,$sql);
         
         
@@ -20,30 +55,11 @@
     else{
         
         //inserting data
-        $sql = "INSERT INTO admin(toll_number,toll_fax) VALUES ('".$toll_number."','".$toll_fax."')";
+$sql = "INSERT INTO admin(toll_number,toll_fax,employeeid,name_patient,gender,age,dob,contact_patient,contact_relative,insured_number,policy_number,mediclaim,company_name,physician,name_physician,contact_physician,name_doctor,contact_doctor,nature_illness,relevant,duration,date_consultation,past_history,diagnosis,icd_code,line_treatment,invest_medical,route_drug,name_surgery,icd_pcs,other_treatment,injury_occur) VALUES('$toll_number','$toll_fax','$employeeid','$name_patient','$gender','$age','$dob','$contact_patient','$contact_relative','$insured_number','$policy_number','$mediclaim','$company_name','$physician','$name_physician','$contact_physician','$name_doctor','$contact_doctor','$nature_illness','$relevant','$duration','$date_consultation','$past_history','$diagnosis','$icd_code','$line_treatment','$invest_medical','$route_drug','$name_surgery','$icd_pcs','$other_treatment','$injury_occur')";
         mysqli_query($conn,$sql);
         $last_insert_id = mysqli_insert_id($conn);
         echo $last_insert_id;exit;
-       
-        // $inputdata =  $_REQUEST['inputdata'];
- 
-        // // $patientid = $_REQUEST['patientid'];
-       
-        // $colname = $_REQUEST['colname'];
-       
-        // // $sql = "UPDATE  admin SET ".$colname."='".$inputdata."'   WHERE id='".$patientid."'"
-        // $sql = "INSERT INTO admin($colname) VALUES ('".$inputdata."')";
-
-        //     //    $sql = "UPDATE  admin SET ".$colname."='".$inputdata."'   WHERE id='".$patientid."'" ;
-       
-        //  if(mysqli_query($conn, $sql)){
-        //            echo "data has been update successfully";
-        //        } else{
-        //            echo "ERROR: Hush! Sorry $sql. "
-        //                . mysqli_error($conn);
-        //        }
-       
+    }}
                ?>
          
-      
- 
+    

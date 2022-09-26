@@ -6,6 +6,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+     <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" /> -->
+     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>  
     <link rel="stylesheet" href="style.css">
   </head>
     <title>birlaform</title>
@@ -30,7 +33,7 @@
                         <div class="col-md-6 aligninput form-group">
                         <span class="alphabet">b.</span>
                     <label for="">Toll free phone number</label>
-                    <input type="text" class="form-control class autosave"  name="toll_number" id="toll_number" >
+                    <input type="text" class="form-control class autosave"  name="toll_number" id="toll_number"  >
                      </div>
                         <div class="col-md-6 aligninput form-group">
                         <span class="alphabet">c.</span>
@@ -44,6 +47,11 @@
                     <div class="form-group">  
                         <input type="hidden" name="post_id" id="post_id">
                     </div>  -->
+                    <div class="form-group">  
+                     <input type="hidden" name="post_id" id="post_id" />  
+                     <div id="autoSave"></div>  
+                </div>  
+
                 </div>
 
                     
@@ -275,9 +283,8 @@
                 </div>
               
             
-
-                    <input type="submit" name="submit" class="btn submitbtn btn-success">
-           
+               
+        <!-- <input type="submit" class="btn btn-success" name="submit" id="submit"> -->
 
             </div>
 
@@ -290,47 +297,133 @@
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.min.js" integrity="sha384-7VPbUDkoPSGFnVtYi0QogXtr74QeVeeIs99Qfg5YCF+TidwNdjvaKZX19NZ/e6oz" crossorigin="anonymous"></script>
 <script>
-$(document).ready(function () {
+
     
-    $('#submitbtn').click(function (e) { 
-        e.preventDefault();
-        alert("data saved Successfully");
-        
-    });
-});
-// $(document).ready(function () {
-//     $('.autosave').on('change',function(){
-//         var field_id = $(this).attr('id');
-//         var field_val = $('#'+field_id).val();
-//         var field_name = $('#'+field_id).attr('name');
-//         var post_id = $('#post_id').val();
-//         //alert(field_val); return false;
-//         if(field_val != ''){
-//             $.ajax({
-//                 url: "admins.php",
-//                 method: "POST",
-//                 //dataType : 'text',
-//                 data:{
-//                     post_id : post_id,
-//                     field_val:field_val,
-//                     field_name:field_name,
-//                 },
-//                 success: function(data){
-//                     {
-//                         if(data !=''){
-//                             console.log(data);
-//                             $("#post_id").val(data);
-//                         }
-                        
-//                     }
-//                 }
-//             });
-//         }
-//     });
-
-
+   
+$(document).ready(function () {
+      function autoSave()  
+      {  
+           var toll_number = $('#toll_number').val();  
+           var toll_fax = $('#toll_fax').val();  
+           var name_patient = $('#name_patient').val();  
+           var gender = $('#gender').val();  
+           var age = $('#age').val();  
+           var dob = $('#dob').val();  
+           var contact_patient = $('#contact_patient').val();  
+           var contact_relative = $('#contact_relative').val();  
+           var insured_number = $('#insured_number').val();  
+           var policy_number = $('#policy_number').val();  
+           var mediclaim = $('#mediclaim').val();  
+           var company_name = $('#company_name').val();  
+           var physician = $('#physician').val();  
+           var name_physician = $('#name_physician').val();  
+           var contact_physician = $('#contact_physician').val();  
+           var name_doctor = $('#name_doctor').val();  
+           var contact_doctor = $('#contact_doctor').val();  
+           var nature_illness = $('#nature_illness').val();  
+           var relevant = $('#relevant').val();  
+           var duration = $('#duration').val();  
+           var date_consultation = $('#date_consultation').val();  
+           var past_history = $('#past_history').val();  
+           var diagnosis = $('#diagnosis').val();  
+           var icd_code = $('#icd_code').val();  
+           var line_treatment = $('#line_treatment').val();  
+           var invest_medical = $('#invest_medical').val();  
+           var route_drug = $('#route_drug').val();  
+           var name_surgery = $('#name_surgery').val();  
+           var icd_pcs = $('#icd_pcs').val();  
+           var other_treatment = $('#other_treatment').val();  
+           var injury_occur = $('#injury_occur').val();  
+           var post_id = $('#post_id').val(); 
           
-// });
+           if(toll_number != '' && toll_fax != '' && name_patient != '' && gender != '' &&age != '' && dob != '' &&contact_patient != '' && contact_relative != '' &&insured_number != '' && policy_number != '' &&mediclaim != '' && company_name != '' &&physician != '' && name_physician != '' &&contact_physician != '' && name_doctor != '' &&contact_doctor != '' && nature_illness != '' &&relevant != '' && duration != '' &&date_consultation != '' && past_history != '' &&diagnosis != '' && icd_code != '' &&line_treatment != '' && invest_medical != '' &&route_drug != '' && name_surgery != '' &&icd_pcs != '' && other_treatment != ''  && injury_occur != ''  )  
+           {  
+                $.ajax({  
+                     url:"admin.php",  
+                     method:"POST",  
+                     data:{
+                        toll_number:toll_number,
+                        toll_fax:toll_fax, 
+                        name_patient:name_patient,
+                        gender:gender, 
+                        age:age,
+                        dob:dob, 
+                        contact_patient:contact_patient,
+                        contact_relative:contact_relative, 
+                        insured_number:insured_number,
+                        policy_number:policy_number, 
+                        mediclaim:mediclaim,
+                        company_name:company_name, 
+                        physician:physician,
+                        name_physician:name_physician, 
+                        contact_physician:contact_physician,
+                        name_doctor:name_doctor, 
+                        contact_doctor:contact_doctor,
+                        nature_illness:nature_illness, 
+                        relevant:relevant,
+                        duration:duration, 
+                        date_consultation:date_consultation,
+                        past_history:past_history, 
+                        diagnosis:diagnosis,
+                        icd_code:icd_code,
+                        line_treatment:line_treatment,
+                        invest_medical:invest_medical, 
+                        route_drug:route_drug,
+                        name_surgery:name_surgery, 
+                        icd_pcs:icd_pcs,
+                        other_treatment:other_treatment, 
+                        injury_occur:injury_occur,
+                        
+                        post_id:post_id
+                    },  
+                     dataType:"text",  
+                     success:function(data)  
+                     {  
+                          if(data != '')  
+                          {  
+                               $('#post_id').val(data);  
+                          }  
+                          $('#autoSave').text("Post save as draft");  
+                          setInterval(function(){  
+                               $('#autoSave').text('');  
+                          }, 2000);  
+                     }  
+                });  
+           }            
+      }  
+      setInterval(function(){   
+           autoSave();   
+           }, 10000);  
+
+        });
+    // $('.autosave').on('change',function(){
+    //     var field_id = $(this).attr('id');
+    //     var field_val = $('#'+field_id).val();
+    //     var field_name = $('#'+field_id).attr('name');
+    //     var post_id = $('#post_id').val();
+    //     //alert(field_val); return false;
+    //     if(field_val != ''){
+    //         $.ajax({
+    //             url: "admins.php",
+    //             method: "POST",
+    //             //dataType : 'text',
+    //             data:{
+    //                 post_id : post_id,
+    //                 field_val:field_val,
+    //                 field_name:field_name,
+    //             },
+    //             success: function(data){
+    //                 {
+    //                     if(data !=''){
+    //                         console.log(data);
+    //                         $("#post_id").val(data);
+    //                     }
+                        
+    //                 }
+    //             }
+    //         });
+    //     }
+
 </script>
 
 </body>

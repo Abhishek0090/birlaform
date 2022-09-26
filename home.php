@@ -83,49 +83,42 @@ input:checked {
 	$link = mysqli_connect("localhost","root","","birlaform");
 	$no = 0;
 	$q = "SELECT * FROM `admin` ORDER BY id DESC";
-	$p = "SELECT * FROM `patient` ORDER BY employeeid DESC";
-	$d = "SELECT * FROM `doctor` ORDER BY doctorid DESC";
 	$res = mysqli_query($link,$q);
-	$res1 = mysqli_query($link,$p);
-	$res2 = mysqli_query($link,$d);
+	
 	$row = mysqli_num_rows($res);
-	$row1 = mysqli_num_rows($res1);
-	$row2 = mysqli_num_rows($res2);
+	
     
    //for admin
 	if($row > 0) { 
 	if($row = mysqli_fetch_assoc($res) ) {
 
+
+		//admin 
+
         $toll_number = $row['toll_number'];
         $toll_fax = $row['toll_fax'];
+
+		//string split using split func
         $toll_number_exp = str_split($toll_number);
 		$toll_fax_exp = str_split($toll_fax);
     
-	}
-	} else {
-        echo "Something went wrong" ;
-	}
 
-	//for patient
-	if($row1 > 0) { 
+		//patient
 
-	
-	if($row1 = mysqli_fetch_assoc($res1) ) {
-
-        $employeeid = $row1['employeeid'];
-        $name_patient = $row1['name_patient'];
-        $gender = $row1['gender'];
-        $age = $row1['age'];
-        $dob = $row1['dob'];
-        $contact_patient = $row1['contact_patient'];
-        $contact_relative = $row1['contact_relative'];
-        $insured_number = $row1['insured_number'];
-        $policy_number = $row1['policy_number'];
-        $mediclaim = $row1['mediclaim'];
-        $company_name = $row1['company_name'];
-        $physician = $row1['physician'];
-        $name_physician = $row1['name_physician'];
-        $contact_physician = $row1['contact_physician'];
+		$employeeid = $row['employeeid'];
+        $name_patient = $row['name_patient'];
+        $gender = $row['gender'];
+        $age = $row['age'];
+        $dob = $row['dob'];
+        $contact_patient = $row['contact_patient'];
+        $contact_relative = $row['contact_relative'];
+        $insured_number = $row['insured_number'];
+        $policy_number = $row['policy_number'];
+        $mediclaim = $row['mediclaim'];
+        $company_name = $row['company_name'];
+        $physician = $row['physician'];
+        $name_physician = $row['name_physician'];
+        $contact_physician = $row['contact_physician'];
 
 		//split into string char
         $employeeid_exp = str_split($employeeid);
@@ -143,32 +136,23 @@ input:checked {
 		$name_physician_exp = str_split($name_physician);
 		$contact_physician_exp = str_split($contact_physician);
 		
-	}
-	} else {
-        echo "Something went wrong" ;
-	}
-
-	//for doctor
-
-	if($row2 > 0) { 
-	if($row2 = mysqli_fetch_assoc($res2) ) {
-
-        $name_doctor = $row2['name_doctor'];
-        $contact_doctor = $row2['contact_doctor'];
-        $nature_illness = $row2['nature_illness'];
-        $relevant = $row2['relevant'];
-        $duration = $row2['duration'];
-        $date_consultation = $row2['date_consultation'];
-        $past_history = $row2['past_history'];
-        $diagnosis = $row2['diagnosis'];
-        $icd_code = $row2['icd_code'];
-        $line_treatment = $row2['line_treatment'];
-        $invest_medical = $row2['invest_medical'];
-        $route_drug = $row2['route_drug'];
-        $name_surgery = $row2['name_surgery'];
-        $icd_pcs = $row2['icd_pcs'];
-        $other_treatment = $row2['other_treatment'];
-        $injury_occur = $row2['injury_occur'];
+		//doctor
+		$name_doctor = $row['name_doctor'];
+        $contact_doctor = $row['contact_doctor'];
+        $nature_illness = $row['nature_illness'];
+        $relevant = $row['relevant'];
+        $duration = $row['duration'];
+        $date_consultation = $row['date_consultation'];
+        $past_history = $row['past_history'];
+        $diagnosis = $row['diagnosis'];
+        $icd_code = $row['icd_code'];
+        $line_treatment = $row['line_treatment'];
+        $invest_medical = $row['invest_medical'];
+        $route_drug = $row['route_drug'];
+        $name_surgery = $row['name_surgery'];
+        $icd_pcs = $row['icd_pcs'];
+        $other_treatment = $row['other_treatment'];
+        $injury_occur = $row['injury_occur'];
        
 		//split into string char
         $name_doctor_exp = str_split($name_doctor);
@@ -187,11 +171,17 @@ input:checked {
 		$icd_pcs_exp = str_split($icd_pcs);
 		$other_treatment_exp = str_split($other_treatment);
 		$injury_occur_exp = str_split($injury_occur);
-    
+
+
+
+
+
 	}
 	} else {
         echo "Something went wrong" ;
 	}
+
+	
 	$html .="
 
 <div class=margin>
