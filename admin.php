@@ -5,31 +5,31 @@
 
 
 //     // print_r($_POST);die;
-    $post_id = mysqli_real_escape_string($conn, $_POST['post_id']); 
-    $toll_number = mysqli_real_escape_string($conn, $_POST['toll_number']);
-    $toll_fax = mysqli_real_escape_string($conn, $_POST['toll_fax']);
+    $post_id =  !empty($_POST['employeeid']) ? mysqli_real_escape_string($conn, $_POST['employeeid']) : '';
+    $toll_number =  !empty($_POST['employeeid']) ? mysqli_real_escape_string($conn, $_POST['employeeid']) : '';
+    $toll_fax =  !empty($_POST['employeeid']) ? mysqli_real_escape_string($conn, $_POST['employeeid']) : '';
     
   
 //patient       
 $employeeid = !empty($_POST['employeeid']) ? mysqli_real_escape_string($conn, $_POST['employeeid']) : '';
-$name_patient = mysqli_real_escape_string($conn, $_POST['name_patient']);
-$gender = mysqli_real_escape_string($conn, $_POST['gender']);
-$age = mysqli_real_escape_string($conn, $_POST['age']);
-$dob = mysqli_real_escape_string($conn, $_POST['dob']);
-$contact_patient = mysqli_real_escape_string($conn, $_POST['contact_patient']);
-$contact_relative = mysqli_real_escape_string($conn, $_POST['contact_relative']);
-$insured_number = mysqli_real_escape_string($conn, $_POST['insured_number']);
-$policy_number = mysqli_real_escape_string($conn, $_POST['policy_number']);
-$mediclaim = mysqli_real_escape_string($conn, $_POST['mediclaim']);
-$company_name = mysqli_real_escape_string($conn, $_POST['company_name']);
-$physician = mysqli_real_escape_string($conn, $_POST['physician']);
-$name_physician = mysqli_real_escape_string($conn, $_POST['name_physician']);
-$contact_physician = mysqli_real_escape_string($conn, $_POST['contact_physician']);
+$name_patient =  !empty($_POST['employeeid']) ? mysqli_real_escape_string($conn, $_POST['employeeid']) : '';
+$gender =  !empty($_POST['employeeid']) ? mysqli_real_escape_string($conn, $_POST['employeeid']) : '';
+$age = !empty($_POST['employeeid']) ? mysqli_real_escape_string($conn, $_POST['employeeid']) : '';
+$dob =  !empty($_POST['employeeid']) ? mysqli_real_escape_string($conn, $_POST['employeeid']) : '';
+$contact_patient =  !empty($_POST['employeeid']) ? mysqli_real_escape_string($conn, $_POST['employeeid']) : '';
+$contact_relative =  !empty($_POST['employeeid']) ? mysqli_real_escape_string($conn, $_POST['employeeid']) : '';
+$insured_number =  !empty($_POST['employeeid']) ? mysqli_real_escape_string($conn, $_POST['employeeid']) : '';
+$policy_number =  !empty($_POST['employeeid']) ? mysqli_real_escape_string($conn, $_POST['employeeid']) : '';
+$mediclaim =  !empty($_POST['employeeid']) ? mysqli_real_escape_string($conn, $_POST['employeeid']) : '';
+$company_name =  !empty($_POST['employeeid']) ? mysqli_real_escape_string($conn, $_POST['employeeid']) : '';
+$physician =  !empty($_POST['employeeid']) ? mysqli_real_escape_string($conn, $_POST['employeeid']) : '';
+$name_physician =  !empty($_POST['employeeid']) ? mysqli_real_escape_string($conn, $_POST['employeeid']) : '';
+$contact_physician =  !empty($_POST['employeeid']) ? mysqli_real_escape_string($conn, $_POST['employeeid']) : '';
 
 //doctor
-$name_doctor  = mysqli_real_escape_string($conn, $_POST['name_doctor']);
-$contact_doctor  = mysqli_real_escape_string($conn, $_POST['contact_doctor']);
-$nature_illness  = mysqli_real_escape_string($conn, $_POST['nature_illness']);
+$name_doctor  =  !empty($_POST['employeeid']) ? mysqli_real_escape_string($conn, $_POST['employeeid']) : '';
+$contact_doctor  =  !empty($_POST['employeeid']) ? mysqli_real_escape_string($conn, $_POST['employeeid']) : '';
+$nature_illness  =  !empty($_POST['employeeid']) ? mysqli_real_escape_string($conn, $_POST['employeeid']) : '';
 $relevant  = mysqli_real_escape_string($conn, $_POST['relevant']);
 $duration  = mysqli_real_escape_string($conn, $_POST['duration']);
 $date_consultation  = mysqli_real_escape_string($conn, $_POST['date_consultation']);
