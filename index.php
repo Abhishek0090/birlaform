@@ -18,8 +18,7 @@
                 <div class="d-flex flex-end" style="border:none;">
 
                     <button class = "btn "><a href="home.php" target="_blank">Download pdf</a></button>
-                    <!-- <button class = "btn "><a href="patientpdf.php" target="_blank"  >Download patient pdf</a></button>
-                    <button class = "btn  " ><a href="doctorpdf.php" target="_blank"  >Download doctor pdf</a></button> -->
+                    
                 </div>
                 <form  action="insert.php" method="post">
 
@@ -37,15 +36,11 @@
                         <div class="col-md-6 aligninput form-group">
                         <span class="alphabet">c.</span>
 
-                        <!--  -->
+                
                     <label for="">Toll free Fax</label>
                     <input type="text" class="form-control class autosave"   name="toll_fax" id="toll_fax" >
                     </div>
-                    <!-- <div class="col-md-6 aligninput">
-                    </div>
-                    <div class="form-group">  
-                        <input type="hidden" name="post_id" id="post_id">
-                    </div>  -->
+                 
                     
 
                 </div>
@@ -64,11 +59,11 @@
                     <label for="">Gender</label>
             
                         <div class="form-check checkwidth">
-            <input  type="radio" class="form-check-input autosave"   id="radio1" name="gender" value="Male" checked >Male
+            <input  type="radio" class="form-check-input autosave gender"   id="gender" name="gender" value="Male" checked >Male
             <label class="form-check-label" for="radio1"></label>
             </div>
             <div class="form-check">
-            <input type="radio" class="form-check-input autosave" id="radio2" name="gender" value="Female" >Female
+            <input type="radio" class="form-check-input autosave gender" id="gender" name="gender" value="Female" >Female
             <label class="form-check-label" for="radio2" ></label>
             </div>
                         </div>
@@ -132,11 +127,11 @@
 
                     <label for="">Currently do you have any other Mediclaim/Health insurance</label>
                     <div class="form-check checkwidth">
-            <input  type="radio" class="form-check-input autosave"   id="radio1" name="mediclaim" value="Yes" checked >Yes
+            <input  type="radio" class="form-check-input autosave mediclaim"   id="mediclaim" name="mediclaim" value="Yes" checked >Yes
             <label class="form-check-label" for="radio1"></label>
             </div>
             <div class="form-check">
-            <input type="radio" class="form-check-input autosave" id="radio2" name="mediclaim" value="No" >No
+            <input type="radio" class="form-check-input autosave mediclaim" id="mediclaim" name="mediclaim" value="No" >No
             <label class="form-check-label" for="radio2" ></label>
             </div>
 
@@ -153,11 +148,11 @@
 
                     <label for="">Do you have any family  physician</label>
                     <div class="form-check checkwidth">
-            <input  type="radio" class="form-check-input autosave"   id="radio1" name="physician" value="Yes" checked >Yes
+            <input  type="radio" class="form-check-input autosave physician"   id="physician" name="physician" value="Yes" checked >Yes
             <label class="form-check-label" for="radio1"></label>
             </div>
             <div class="form-check">
-            <input type="radio" class="form-check-input autosave" id="radio2" name="physician" value="No" >No
+            <input type="radio" class="form-check-input autosave physician" id="physician" name="physician" value="No" >No
             <label class="form-check-label" for="radio2" ></label>
             </div>
             </div>
@@ -300,22 +295,49 @@
 $(document).ready(function () {
       $('.autosave').change(function () { 
         // e.preventDefault();
-    
+        
+            var gender = [];
+            var mediclaim = [];
+            var physician = [];
+          
+
+            $(".gender").each(function(){
+            if($(this).is(":checked")){
+                gender.push($(this).val());
+            }
+            });
+
+            $(".mediclaim").each(function(){
+            if($(this).is(":checked")){
+                mediclaim.push($(this).val());
+            }
+            });
+
+            $(".physician").each(function(){
+            if($(this).is(":checked")){
+                physician.push($(this).val());
+            }
+            });
+            gender = gender.toString();
+            mediclaim = mediclaim.toString();
+            physician = physician.toString();
+
            var toll_number = $('#toll_number').val();  
         //    alert(toll_number);return false;
            var toll_fax = $('#toll_fax').val();  
            
            var name_patient = $('#name_patient').val();  
-           var gender = $('#gender').val();  
+        //    var gender = $('#gender').val();  w
            var age = $('#age').val();  
            var dob = $('#dob').val();  
            var contact_patient = $('#contact_patient').val();  
            var contact_relative = $('#contact_relative').val();  
            var insured_number = $('#insured_number').val();  
+           var employeeid = $('#employeeid').val();  
            var policy_number = $('#policy_number').val();  
-           var mediclaim = $('#mediclaim').val();  
+        //    var mediclaim = $('#mediclaim').val();  
            var company_name = $('#company_name').val();  
-           var physician = $('#physician').val();  
+        //    var physician = $('#physician').val();  
            var name_physician = $('#name_physician').val();  
            var contact_physician = $('#contact_physician').val();  
            var name_doctor = $('#name_doctor').val();  
@@ -349,6 +371,7 @@ $(document).ready(function () {
                         dob:dob, 
                         contact_patient:contact_patient,
                         contact_relative:contact_relative, 
+                        employeeid : employeeid,
                         insured_number:insured_number,
                         policy_number:policy_number, 
                         mediclaim:mediclaim,
